@@ -1,0 +1,38 @@
+image: openjdk:8
+
+definitions:
+  caches:
+    gradlewrapper: ~/.gradle/wrapper
+  steps:
+    - step: &lint
+        name: Lint
+        caches:
+          - gradle
+          - gradlewrapper
+        script:
+          - bash ./gradlew ktlint
+    - step: &test
+        name: Test
+        caches:
+          - gradle
+          - gradlewrapper
+        script:
+          - bash ./gradlew test
+    - step: &publish
+        name: Publish
+        caches:
+          - gradle
+          - gradlewrapper
+        script:
+          - bash ./gradlew publish
+        filter:
+          includes:
+            - version.gradle
+
+pipelines:
+  branches:
+    master:
+      - parallel:
+        - step: *lint
+        - step: *test
+      - step: *publish
