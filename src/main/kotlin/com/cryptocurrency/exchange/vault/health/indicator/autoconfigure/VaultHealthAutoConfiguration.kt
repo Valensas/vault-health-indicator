@@ -5,6 +5,7 @@ import kotlinx.coroutines.reactor.mono
 import org.slf4j.LoggerFactory
 import org.springframework.boot.actuate.health.Health
 import org.springframework.boot.actuate.health.ReactiveHealthIndicator
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -12,6 +13,7 @@ import org.springframework.vault.core.ReactiveVaultTemplate
 import org.springframework.vault.core.awaitReadOrNull
 
 @Configuration
+@ConditionalOnBean(ReactiveVaultTemplate::class)
 @EnableConfigurationProperties(VaultHeartbeatProperties::class)
 class VaultHealthAutoConfiguration(
     private val reactiveVaultTemplate: ReactiveVaultTemplate,
