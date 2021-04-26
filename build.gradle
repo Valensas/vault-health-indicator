@@ -2,7 +2,7 @@ apply from: './version.gradle'
 
 buildscript {
     ext {
-        kotlinVersion = '1.5.0-RC'
+        kotlinVersion = '1.4.32'
 
         springBootVersion = '2.4.5'
         springVaultVersion = '2.3.1'
