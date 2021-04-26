@@ -1,4 +1,4 @@
-package com.cryptocurrency.exchange.vault.health.indicator
+package com.cryptocurrency.exchange.vault.health.indicator.autoconfigure
 
 import com.cryptocurrency.exchange.vault.health.indicator.properties.VaultHeartbeatProperties
 import kotlinx.coroutines.reactor.mono
