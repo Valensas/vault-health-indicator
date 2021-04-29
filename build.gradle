@@ -89,9 +89,9 @@ configurations {
 dependencies {
     // Spring Boot
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    compileOnly("org.springframework.boot:spring-boot-starter-webflux")
-    compileOnly("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-security")
+
+    // Kotlin coroutines support
+    compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
     // Kotlin Support
     implementation('org.jetbrains.kotlin:kotlin-stdlib')
@@ -102,9 +102,6 @@ dependencies {
 
     // Lint
     ktlint("com.pinterest:ktlint:${ktlintVersion}")
-
-    // Kotlin coroutines support
-    compileOnly("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 }
 
 task ktlint(type: JavaExec, group: "verification") {
