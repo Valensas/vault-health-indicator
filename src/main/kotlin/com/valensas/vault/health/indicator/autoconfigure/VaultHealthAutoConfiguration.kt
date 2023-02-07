@@ -1,6 +1,6 @@
-package com.cryptocurrency.exchange.vault.health.indicator.autoconfigure
+package com.valensas.vault.health.indicator.autoconfigure
 
-import com.cryptocurrency.exchange.vault.health.indicator.properties.VaultHeartbeatProperties
+import com.valensas.vault.health.indicator.properties.VaultHeartbeatProperties
 import kotlinx.coroutines.reactor.mono
 import org.slf4j.LoggerFactory
 import org.springframework.boot.actuate.health.Health
@@ -22,7 +22,7 @@ import org.springframework.vault.core.awaitReadOrNull
 class VaultHealthAutoConfiguration(
     private val vaultHeartbeatProperties: VaultHeartbeatProperties
 ) {
-    val logger = LoggerFactory.getLogger(javaClass)
+    private val logger = LoggerFactory.getLogger(javaClass)
 
     @Bean
     @ConditionalOnBean(ReactiveVaultTemplate::class)
