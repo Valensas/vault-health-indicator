@@ -1,7 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "3.0.2"
     id("io.spring.dependency-management") version "1.1.0"
     id("org.jmailen.kotlinter") version "3.11.1"
     id("maven-publish")
@@ -11,20 +10,11 @@ plugins {
 }
 
 group = "com.valensas.data"
-version = "1.1.0"
+version = "1.2.0"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
-    if (project.hasProperty("AWS_REPO_URL")) {
-        maven {
-            this.url = uri(project.property("AWS_REPO_URL").toString())
-            credentials(AwsCredentials::class) {
-                this.accessKey = project.property("AWS_REPO_USER_ACCESS_KEY").toString()
-                this.secretKey = project.property("AWS_REPO_USER_SECRET_KEY").toString()
-            }
-        }
-    }
 }
 
 
@@ -56,8 +46,9 @@ tasks.withType<Test> {
 
 dependencyManagement {
     imports {
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2022.0.0")
         mavenBom("org.springframework.vault:spring-vault-dependencies:3.0.0")
+        mavenBom("org.springframework.boot:spring-boot-dependencies:3.0.2")
+
     }
 }
 
