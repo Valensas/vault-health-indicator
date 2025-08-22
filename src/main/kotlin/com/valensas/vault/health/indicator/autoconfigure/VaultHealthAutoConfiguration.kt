@@ -21,11 +21,13 @@ class VaultHealthAutoConfiguration(
     private val logger = LoggerFactory.getLogger(javaClass)
 
     @Bean
-    fun vaultHealth(reactiveVaultTemplate: ReactiveVaultVersionedKeyValueTemplate): ReactiveHealthIndicator =
+    fun vaultHealth(reactiveVaultTemplate: List<ReactiveVaultVersionedKeyValueTemplate>): ReactiveHealthIndicator =
         ReactiveHealthIndicator {
             mono {
                 try {
-                    reactiveVaultTemplate.get(vaultHeartbeatProperties.heartbeatFile).awaitFirstOrNull()
+                    reactiveVaultTemplate.forEach { it ->
+                        it.get(vaultHeartbeatProperties.heartbeatFile).awaitFirstOrNull()
+                    }
                     Health.up()
                 } catch (e: Throwable) {
                     logger.error("Unable to access heartbeat file {}", vaultHeartbeatProperties.heartbeatFile, e)
