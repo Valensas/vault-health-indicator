@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "com.valensas.data"
-java.sourceCompatibility = JavaVersion.VERSION_21
+java.sourceCompatibility = JavaVersion.VERSION_25
 
 repositories {
     mavenCentral()
@@ -25,8 +25,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
     // Kotlin
-    implementation("jakarta.annotation:jakarta.annotation-api:2.1.1")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("tools.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
@@ -38,7 +37,7 @@ dependencies {
 tasks.withType<KotlinCompile> {
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict")
-        jvmTarget = JvmTarget.JVM_21
+        jvmTarget = JvmTarget.JVM_25
     }
 }
 
@@ -50,8 +49,8 @@ extra["kotlin.version"] = "2.4.0"
 
 dependencyManagement {
     imports {
-        mavenBom("org.springframework.vault:spring-vault-dependencies:3.0.0")
-        mavenBom("org.springframework.boot:spring-boot-dependencies:3.5.15")
+        mavenBom("org.springframework.boot:spring-boot-dependencies:4.1.0")
+        mavenBom("org.springframework.vault:spring-vault-core:4.1.0")
     }
 }
 
